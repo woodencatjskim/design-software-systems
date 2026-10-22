@@ -1,0 +1,22 @@
+Files read:
+- task.txt
+- skill/SKILL.md
+- skill/references/repository-review.md
+- skill/references/correctness-and-failures.md
+- service/CONTRACT.md
+- service/api.py
+- service/storage.py
+- service/schema.sql
+- service/__init__.py
+
+Commands/results:
+1. cat task.txt and skill/SKILL.md: read evaluation task and skill procedure.
+2. rg --files service; cat selected references: listed five service files and read repository review / correctness guidance.
+3. nl -ba on all five service files: traced immediate yield forwarding and pre-commit acceptance.
+4. python -B isolated probe using tempfile within this workspace, actual service.api.submit, file-backed SQLite, isolation_level=None, synchronous=FULL. Subprocess consumed first event and immediately os._exit(0); parent reopened database. Output:
+   Interrupted writer event: accepted
+   Rows after writer exit: []
+   Fully consumed events: ['accepted']
+   Rows after full consumption and reopen: [('m2', 'world')]
+   Exit code 0. Temporary database directory automatically removed. No service or skill edits; no network/install/subagents.
+5. Created answer.md and trace.txt in this workspace.

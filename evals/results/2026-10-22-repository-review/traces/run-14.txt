@@ -1,0 +1,13 @@
+Files read:
+- task.txt
+- skill/SKILL.md
+- skill/references/repository-review.md
+- skill/references/correctness-and-failures.md
+- service/CONTRACT.md
+- service/api.py
+
+Commands/results:
+- cat task.txt and skill/SKILL.md: read evaluation request and skill procedure.
+- cat the two listed skill references; rg --files service: identified service/api.py and service/CONTRACT.md.
+- nl -ba service/CONTRACT.md and service/api.py: inspected entire supplied contract and endpoint with line numbers.
+- Wrote answer.md and trace.txt. No service or skill files changed; no probes, tests, network, installations, or subagents used.

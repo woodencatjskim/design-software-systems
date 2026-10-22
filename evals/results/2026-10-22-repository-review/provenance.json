@@ -17,98 +17,176 @@
       "case": "case-17",
       "condition": "A",
       "status": "completed",
-      "answer_words": 362
+      "answer_words": 362,
+      "initial_status": "completed",
+      "cohort": "initial"
     },
     {
       "id": "run-02",
       "case": "case-42",
       "condition": "B",
       "status": "completed",
-      "answer_words": 341
+      "answer_words": 341,
+      "initial_status": "completed",
+      "cohort": "initial"
     },
     {
       "id": "run-03",
       "case": "case-28",
       "condition": "A",
       "status": "completed",
-      "answer_words": 278
+      "answer_words": 278,
+      "initial_status": "completed",
+      "cohort": "initial"
     },
     {
       "id": "run-04",
       "case": "case-63",
       "condition": "B",
       "status": "completed",
-      "answer_words": 386
+      "answer_words": 386,
+      "initial_status": "completed",
+      "cohort": "initial"
     },
     {
       "id": "run-05",
       "case": "case-35",
       "condition": "A",
       "status": "completed",
-      "answer_words": 373
+      "answer_words": 373,
+      "initial_status": "completed",
+      "cohort": "initial"
     },
     {
       "id": "run-06",
       "case": "case-91",
       "condition": "B",
       "status": "completed",
-      "answer_words": 294
+      "answer_words": 294,
+      "initial_status": "completed",
+      "cohort": "initial"
     },
     {
       "id": "run-07",
       "case": "case-56",
       "condition": "A",
       "status": "completed",
-      "answer_words": 338
+      "answer_words": 338,
+      "initial_status": "completed",
+      "cohort": "initial"
     },
     {
       "id": "run-08",
       "case": "case-17",
       "condition": "B",
-      "status": "invalid",
-      "reason": "Subagent runtime usage limit; no answer or trace produced"
+      "status": "completed",
+      "initial_status": "invalid",
+      "prior_status_reason": "Subagent runtime usage limit; no answer or trace produced",
+      "attempts": [
+        {
+          "status": "invalid",
+          "reason": "Subagent runtime usage limit; no answer or trace produced"
+        },
+        {
+          "status": "completed",
+          "cohort": "resumed"
+        }
+      ],
+      "cohort": "resumed",
+      "answer_words": 393
     },
     {
       "id": "run-09",
       "case": "case-42",
       "condition": "A",
-      "status": "invalid",
-      "reason": "Subagent runtime usage limit; no answer or trace produced"
+      "status": "completed",
+      "initial_status": "invalid",
+      "prior_status_reason": "Subagent runtime usage limit; no answer or trace produced",
+      "attempts": [
+        {
+          "status": "invalid",
+          "reason": "Subagent runtime usage limit; no answer or trace produced"
+        },
+        {
+          "status": "completed",
+          "cohort": "resumed"
+        }
+      ],
+      "cohort": "resumed",
+      "answer_words": 351
     },
     {
       "id": "run-10",
       "case": "case-28",
       "condition": "B",
       "status": "completed",
-      "answer_words": 348
+      "answer_words": 348,
+      "initial_status": "completed",
+      "cohort": "initial"
     },
     {
       "id": "run-11",
       "case": "case-63",
       "condition": "A",
-      "status": "not_started",
-      "reason": "Further launches stopped after runtime usage-limit errors"
+      "status": "completed",
+      "initial_status": "not_started",
+      "prior_status_reason": "Further launches stopped after runtime usage-limit errors",
+      "attempts": [
+        {
+          "status": "completed",
+          "cohort": "resumed"
+        }
+      ],
+      "cohort": "resumed",
+      "answer_words": 360
     },
     {
       "id": "run-12",
       "case": "case-35",
       "condition": "B",
-      "status": "not_started",
-      "reason": "Further launches stopped after runtime usage-limit errors"
+      "status": "completed",
+      "initial_status": "not_started",
+      "prior_status_reason": "Further launches stopped after runtime usage-limit errors",
+      "attempts": [
+        {
+          "status": "completed",
+          "cohort": "resumed"
+        }
+      ],
+      "cohort": "resumed",
+      "answer_words": 379
     },
     {
       "id": "run-13",
       "case": "case-91",
       "condition": "A",
-      "status": "not_started",
-      "reason": "Further launches stopped after runtime usage-limit errors"
+      "status": "completed",
+      "initial_status": "not_started",
+      "prior_status_reason": "Further launches stopped after runtime usage-limit errors",
+      "attempts": [
+        {
+          "status": "completed",
+          "cohort": "resumed"
+        }
+      ],
+      "cohort": "resumed",
+      "answer_words": 357
     },
     {
       "id": "run-14",
       "case": "case-56",
       "condition": "B",
-      "status": "not_started",
-      "reason": "Further launches stopped after runtime usage-limit errors"
+      "status": "completed",
+      "initial_status": "not_started",
+      "prior_status_reason": "Further launches stopped after runtime usage-limit errors",
+      "attempts": [
+        {
+          "status": "completed",
+          "cohort": "resumed"
+        }
+      ],
+      "cohort": "resumed",
+      "answer_words": 371
     }
   ],
   "sha256": {
@@ -186,11 +264,27 @@
     "evals/results/2026-10-22-repository-review/responses/run-07.md": "180a499aaf05bf9e44ce075a08ad6a6bb863eb3b560f45accbcde2c0b311389a",
     "evals/results/2026-10-22-repository-review/traces/run-07.txt": "ec843568d63fac64170c4b41ed26e541d56e69daa55414970c675f021d0674ff",
     "evals/results/2026-10-22-repository-review/responses/run-10.md": "3155400f88624b8226bb726680b2d93078c483c6213488dc79d00c324eab3655",
-    "evals/results/2026-10-22-repository-review/traces/run-10.txt": "6e52c2b2a9c403206e99f7f8fa50c5c72ed93a4503eba84852b501b336111c63"
+    "evals/results/2026-10-22-repository-review/traces/run-10.txt": "6e52c2b2a9c403206e99f7f8fa50c5c72ed93a4503eba84852b501b336111c63",
+    "evals/results/2026-10-22-repository-review/responses/run-08.md": "481d631ee7f2c582d80a7bf022aaca82bfdbb120db7e7f10021db245d8609f39",
+    "evals/results/2026-10-22-repository-review/traces/run-08.txt": "59914f89cd6e1a40ecc5003fb62521d749ccbca814fcfeb064fb6a980b01d98c",
+    "evals/results/2026-10-22-repository-review/responses/run-09.md": "13768ddba80576f1b0462f1ce04758d8e14ef1bdd8f42be85881b6a41cb40de9",
+    "evals/results/2026-10-22-repository-review/traces/run-09.txt": "70c16539e553b431bcba0ceaf17bff88946ae7aeb8d2938b8258486ac3291909",
+    "evals/results/2026-10-22-repository-review/responses/run-11.md": "af0cc5de249fa68adf0a719cb0f46f550bf927350ffe55744f85f683be910be5",
+    "evals/results/2026-10-22-repository-review/traces/run-11.txt": "ea6db69784ee561398497e32d8cb4370af2678c274afebdf8cf8fcb55865be5f",
+    "evals/results/2026-10-22-repository-review/responses/run-12.md": "f02fd93ec003980b198ea47bf90ec7076776735c3334c70b42a82794c1f97779",
+    "evals/results/2026-10-22-repository-review/traces/run-12.txt": "159f9a0d0c62f12bf88d6d34bee4ce2ac402fa4c158a13ef665acdd68817f561",
+    "evals/results/2026-10-22-repository-review/responses/run-13.md": "c3e3cce9a3a8dcdb492b5a3c9f4a38631537bca904f6381211139547d96fba6f",
+    "evals/results/2026-10-22-repository-review/traces/run-13.txt": "d3d3437a72fce99df4283c59875a63e7abadd64fc8a2082d77b3ee91357d574b",
+    "evals/results/2026-10-22-repository-review/responses/run-14.md": "87a071c9c74a125aac5e98df03b096fa970af11e1aa03316bd8bbde06add6aa2",
+    "evals/results/2026-10-22-repository-review/traces/run-14.txt": "4691806abd76c9720842e12664d4509f0f549a24b1a5a005e491bbd0e36a1d4b",
+    "evals/results/2026-10-22-repository-review/blind-review.json": "ced098006c63c25024965a1356f2b854878dfaa31fd865074973b57296e036fc",
+    "evals/results/2026-10-22-repository-review/blind-review.md": "3c16d9eb66250bfe013c6cef74224928cbb3a9d8ddb686d1950ad9871d11910d",
+    "evals/results/2026-10-22-repository-review/blind-mapping.json": "245214d6e6ac874bc3b4ad5baaf91d220b72e067090056d12d90710bef855d25",
+    "evals/results/2026-10-22-repository-review/blind-review-task.txt": "6a30a7f2663dffdc34ce42c08db077765f41b4c005fab755acb4dc11c8f7be73"
   },
-  "comparison_status": "incomplete",
-  "grading": "creator-reviewed completed answers, not blinded; planned blinded review not run",
-  "completed_criteria_review": "All four properties met in each of eight completed responses in creator review; only case-28 has both conditions, both pass; no aggregate comparative inference",
+  "comparison_status": "complete: 14 answers and condition-blinded review; no demonstrated comparative improvement",
+  "grading": "fresh condition-blinded application subagent; frozen source/rubric review; creator checked report and mapping after grading",
+  "completed_criteria_review": "Both A and B pass 28/28 property judgments; all seven pairs tie; no unsupported material findings or blocking issues",
   "installation": {
     "cli": "1.5.18",
     "source": "local proposed skill",
@@ -204,9 +298,55 @@
     "native_invocation": "not tested"
   },
   "counts": {
+    "planned_case_conditions": 14,
+    "completed": 14,
+    "invalid_prior_attempts": 2,
+    "not_started": 0
+  },
+  "initial_counts": {
     "planned": 14,
     "completed": 8,
     "invalid_usage_limit": 2,
     "not_started": 4
+  },
+  "resumption": {
+    "date": "2026-10-22",
+    "user_requested": true,
+    "frozen_sources_verified": true,
+    "runtime_settings": "same application subagent mechanism, inherited parent settings, no model override",
+    "limitation": "Exact model revision and sampling settings are not exposed; provider-level stability across resumed cohorts cannot be independently verified."
+  },
+  "initial_creator_review": {
+    "grading": "creator-reviewed completed answers, not blinded; planned blinded review not run",
+    "completed_criteria_review": "All four properties met in each of eight completed responses in creator review; only case-28 has both conditions, both pass; no aggregate comparative inference"
+  },
+  "blind_review": {
+    "report": "blind-review.json",
+    "readable_report": "blind-review.md",
+    "task": "blind-review-task.txt",
+    "mapping": "blind-mapping.json",
+    "assignment": "Python random.Random(73129), shuffle each case pair in sorted case order; X/Y labels conceal conditions",
+    "mapping_revealed": "after reviewer saved final reports",
+    "visible_inputs": [
+      "original task",
+      "frozen criteria",
+      "answer key",
+      "case sources",
+      "unaltered answers with X/Y filenames"
+    ],
+    "withheld": [
+      "condition mapping",
+      "skill snapshots",
+      "answerer traces",
+      "prior conclusions"
+    ],
+    "pass_counts": {
+      "A": 28,
+      "B": 28
+    },
+    "pairwise_ties": 7,
+    "unsupported_material_findings": 0,
+    "blocking_issues": 0,
+    "limitations": "Same application subagent mechanism, no pinned model identity; source-based judgments do not authenticate answerer experiments; not an external audit."
   }
 }

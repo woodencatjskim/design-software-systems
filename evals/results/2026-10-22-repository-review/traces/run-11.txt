@@ -1,0 +1,17 @@
+Files read:
+- task.txt
+- skill/SKILL.md
+- skill/references/workflow.md
+- skill/references/correctness-and-failures.md
+- service/CONTRACT.md
+- service/api.py
+- service/repository.py
+- service/schema.sql
+- service/__init__.py
+
+Commands/results:
+1. cat task.txt and skill/SKILL.md: read task and skill instructions.
+2. rg --files service; cat selected workflow and correctness references: discovered five service files and read review guidance.
+3. nl -ba on all five service files: established cited line locations and traced response construction.
+4. python -B in-memory sqlite3 probe importing service.api.search and executing supplied schema: alpha returned only its document but facets acquisition=1, finance=1, handbook=1; beta and empty tenant received the same facets. Inserted beta handbook row only in memory; alpha handbook count rose to 2. Exit status 0. No service/skill files changed.
+5. Wrote answer.md and trace.txt in this isolated workspace.

@@ -18,7 +18,7 @@ The validator checks this package's discovery metadata, required files, copied l
 
 The review protocol uses one fresh session per case and condition, with the answer key and paired counterpart withheld from answerers. It separately checks disposition, source evidence, failure reasoning/counterevidence, and the repair decision, and records unsupported material findings. This addresses limitations of the earlier prose-only comparison below. The fixtures are development cases rather than a held-out benchmark.
 
-The [recorded development run](results/2026-10-22-repository-review/README.md) is incomplete: eight responses completed, two trials failed at the runtime usage limit, and four were not started. Completed responses met the frozen criteria in creator review, but only one case has both conditions. No improvement or comparative win is established; the planned blinded review remains outstanding.
+The [recorded development comparison](results/2026-10-22-repository-review/README.md) is complete: 14 responses across seven paired cases, followed by a condition-blinded source review. Both released and proposed skills passed all 28 property judgments per condition; all seven pairs tied, with no unsupported material finding identified. The initial usage-limit failures and resumed cohort are preserved. This small development evaluation establishes no comparative quality advantage.
 
 ## Recorded behavioral smoke comparison
 
