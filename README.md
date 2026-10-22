@@ -29,6 +29,8 @@ The Skills CLI requires Node.js; use the version required by its [current instal
 
 For manual installation, copy the **entire** `skills/design-software-systems/` directory into your agent's documented skill location. Copying only `SKILL.md` loses the references. See [compatibility and what was actually tested](docs/compatibility.md).
 
+The [releases page](https://github.com/woodencatjskim/design-software-systems/releases) also provides a standalone skill ZIP with a SHA-256 checksum for manual installation.
+
 ## Use
 
 Select `design-software-systems` using your agent's skill mechanism, then describe the problem. In Codex, explicitly invoke it with `$design-software-systems`. Other agents have their own invocation conventions.

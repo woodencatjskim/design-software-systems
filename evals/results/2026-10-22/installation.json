@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-22",
+  "skills_cli": "1.5.18",
+  "node": "22.19.0",
+  "source": "woodencatjskim/design-software-systems",
+  "source_commit": "278f8ed7383af8e16cb43a3e88f6b5fdaada3af3",
+  "targets": [
+    "codex",
+    "claude-code",
+    "cursor"
+  ],
+  "scope": "isolated project, not user-global",
+  "result": "install succeeded; 10 files byte-equal; Claude Code symlink resolved",
+  "native_agent_invocation_tested": false,
+  "sha256": {
+    "LICENSE": "7d54633139885984ba1b309ef3a1a2959f169e4f134e3729b4b445439a7feed3",
+    "SKILL.md": "d5566e5e44bcb36a19c98ccc5fd931d698264f7ae87826b0340a3682c9873989",
+    "agents/openai.yaml": "0827d6925ce94fdc4317edd107d510802eec1ac497fbed8d3a8ccd9f6e0d627d",
+    "assets/design-document-template.md": "083ae4017e6d3758648dbadb58f0e2560ea2a9c1e2f72fb717825a9d128d48cc",
+    "references/capacity-estimation.md": "8024200567bd1fe56924e79c0748c0ade0d38dfae55961858e165ff46f0f673f",
+    "references/content-delivery.md": "48b461af6614f51bb57cfcb73683907d1da1af939dec6e6c56af5d3209ef50e2",
+    "references/correctness-and-failures.md": "955ca85494b47ca61b34f1397769d4231d9da769c11e064202996eaec6eff859",
+    "references/realtime-messaging.md": "3aba53d77604d18051ed22c43c6bb99c74e09ed714d978ca9527f121e0a3bc62",
+    "references/transactional-inventory.md": "a9af3c9b0fb6f2478745013d7d6ac691372b664be2feb96969dbad5e2e10ff61",
+    "references/workflow.md": "869a742820cd5481b8019d9541aa99d1cfe7b6947ccf31560bd161a37bc414ee"
+  }
+}

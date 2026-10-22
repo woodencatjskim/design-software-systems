@@ -14,6 +14,8 @@ npx skills add woodencatjskim/design-software-systems --skill design-software-sy
 
 수동 설치 시 `skills/design-software-systems/` 폴더 전체를 agent의 공식 skill 경로로 복사하세요. [호환성 문서](docs/compatibility.md)는 설치 검증과 실제 실행 검증을 구분합니다.
 
+[릴리스 페이지](https://github.com/woodencatjskim/design-software-systems/releases)에서 skill 전용 ZIP과 SHA-256 체크섬도 받을 수 있습니다.
+
 ## 사용 예시
 
 각 agent에서 skill을 선택한 다음 요청합니다. Codex에서는 `$design-software-systems`로 호출할 수 있습니다.
@@ -41,6 +43,12 @@ design-software-systems로 이 메시징 설계를 검토해줘.
 - 구현 후 확인할 구체적인 검증 조건
 
 [작은 서비스](examples/small-document-catalog.md), [예약](examples/hotel-booking.md), [메시징 검토](examples/messaging-review.md) 예시와 [평가 과제](evals/prompts.json)를 제공합니다. 예시는 교육용이며 실제 운영 성능을 입증하지 않습니다.
+
+## 검증 범위
+
+패키지 검사와 단위 테스트 7개가 Python 3.11·3.13 CI에서 통과했고, GitHub에서 Codex·Claude Code·Cursor 대상으로 설치한 10개 파일의 일치를 확인했습니다. 각 앱의 자동 호출과 실제 시스템 성능은 검증하지 않았습니다.
+
+8개 과제를 세 조건에서 비교한 결과, 주요 설계 기준은 모두 충족했지만 **기본 agent나 비교 skill보다 품질이 높다는 근거는 얻지 못했습니다.** 새 skill 답변에는 두 문단 요청 앞에 라벨을 덧붙인 형식 문제가 하나 있었습니다. 원문과 기준별 판단을 [평가 기록](evals/README.md)에 공개합니다.
 
 ## 출처와 기여
 

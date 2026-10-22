@@ -34,4 +34,10 @@ On 2026-10-22, Skills CLI **1.5.18** installed the local repository into an isol
 
 The installer discovered exactly one skill. It placed the shared package at `.agents/skills/design-software-systems` for the universal Codex/Cursor targets and created a Claude Code symlink at `.claude/skills/design-software-systems`. All **10 installed files** were byte-compared with the source, and the Claude Code symlink resolved to that shared package. No user-global skill installation was changed.
 
-Local package installation passed. Installation from the public GitHub source will be recorded after the repository is created; native host invocation remains outside this check.
+Installation from **`woodencatjskim/design-software-systems` on GitHub also passed** for the same three targets in a second isolated project. All 10 downloaded skill files matched the local source, and the Claude Code symlink resolved correctly. The source commit and individual file hashes are in [the installation record](../evals/results/2026-10-22/installation.json). Native host invocation remains outside this check.
+
+The initial [GitHub Actions run](https://github.com/woodencatjskim/design-software-systems/actions/runs/39713983980) passed the package validator and all seven test methods on **Python 3.11 and 3.13**. Subsequent commits are checked by the same workflow.
+
+## Discovery status
+
+The public GitHub repository has system-design, software-architecture, agent-skills, and agent-specific topics. Direct GitHub installation works. On 2026-10-22, immediately after publication, `skills find design-software-systems --owner woodencatjskim` returned no result. Directory indexing is not under this repository's control; publication and a successful install do not establish immediate skills.sh search visibility.
