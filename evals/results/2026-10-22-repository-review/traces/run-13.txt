@@ -1,0 +1,8 @@
+Read task.txt and skill/SKILL.md.
+Listed service and skill/reference files using rg --files.
+Read skill/references/correctness-and-failures.md, workflow.md, and realtime-messaging.md.
+Read numbered service/CONTRACT.md, schema.sql, storage.py, and api.py.
+Ran an isolated Python probe in a temporary directory inside this workspace: created schema, launched a subprocess with isolation_level=None and PRAGMA synchronous=FULL, advanced api.submit once, killed the suspended writer, reopened the database.
+Result: Writer event and transaction state: accepted False. Recovered rows after writer kill: [('m1', 'hello')]. Temporary database removed automatically.
+No network, installs, subagents, or service/skill source edits. Python imports may create interpreter bytecode caches.
+Wrote answer.md and trace.txt.

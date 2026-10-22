@@ -42,11 +42,17 @@ design-software-systems로 이 메시징 설계를 검토해줘.
 - 기존 시스템의 호환성·이행·되돌림 계획
 - 구현 후 확인할 구체적인 검증 조건
 
+저장소 검토에서는 다른 쓰기 경로와 응답 필드까지 추적하고, 구체적인 실패 순서를 만든 뒤 DB 제약·상위 권한 검사 같은 보호 장치가 그 순서를 막는지 확인합니다. 실제 결함, 조건부 위험, 근거 부족을 구분하며 정상 경로에는 결함이 없다고 답할 수 있습니다. [검토 절차](skills/design-software-systems/references/repository-review.md)와 [신뢰 경계 지침](skills/design-software-systems/references/security-and-trust-boundaries.md)은 관련 작업에서만 읽습니다.
+
 [작은 서비스](examples/small-document-catalog.md), [예약](examples/hotel-booking.md), [메시징 검토](examples/messaging-review.md) 예시와 [평가 과제](evals/prompts.json)를 제공합니다. 예시는 교육용이며 실제 운영 성능을 입증하지 않습니다.
 
 ## 검증 범위
 
 패키지 검사와 단위 테스트 7개가 Python 3.11·3.13 CI에서 통과했고, GitHub에서 Codex·Claude Code·Cursor 대상으로 설치한 10개 파일의 일치를 확인했습니다. 각 앱의 자동 호출과 실제 시스템 성능은 검증하지 않았습니다.
+
+위 설치 기록은 v0.1.0 기준입니다. 현재 개발 버전에는 [저장소 검토 평가](evals/repository-review/README.md)용 정상·결함 쌍 3개와 근거 부족 사례 1개, 그 동작을 확인하는 테스트 7개가 추가되어 전체 테스트는 14개입니다. 코드의 실제 동작 검사와 agent 답변 평가는 구분합니다.
+
+개발 버전 비교 14회와 조건을 가린 블라인드 검토를 완료했습니다. 기존 버전과 개선 버전 모두 28개 기준 판단을 통과했고, 7개 사례 비교는 모두 동률이며 근거 없는 중대한 결함 주장은 발견되지 않았습니다. 초기 사용 한도 오류와 재개 기록, 원문 답변, 검토 결과를 [평가 기록](evals/results/2026-10-22-repository-review/README.md)에 보존했습니다. 작은 개발용 사례 평가이므로 개선 버전의 품질 우위를 입증한 결과는 아닙니다.
 
 8개 과제를 세 조건에서 비교한 결과, 주요 설계 기준은 모두 충족했지만 **기본 agent나 비교 skill보다 품질이 높다는 근거는 얻지 못했습니다.** 새 skill 답변에는 두 문단 요청 앞에 라벨을 덧붙인 형식 문제가 하나 있었습니다. 원문과 기준별 판단을 [평가 기록](evals/README.md)에 공개합니다.
 

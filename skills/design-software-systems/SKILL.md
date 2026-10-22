@@ -30,6 +30,8 @@ Separate facts, assumptions, and unresolved questions. Identify the actors, esse
 
 In a repository, inspect relevant docs, schemas, configuration, entry points, callers, and state-changing paths. Follow the critical flow rather than reading every dependency. Cite file locations for conclusions about existing behavior. Record disagreements between code and design intent; do not silently treat either as an authorized change to the product contract.
 
+For a repository architecture review or a change affecting multiple writers, readers, or trust boundaries, use [repository-review.md](references/repository-review.md). Trace the other paths that can change or expose the same data, then look for enforcement that could disprove a suspected defect. Keep a bounded architecture answer bounded.
+
 Ask only questions whose answers materially change correctness or the architecture. Reuse information already provided. Where reasonable, proceed with explicit assumptions and describe their consequences. Do not require approval at every stage.
 
 ### 2. Define the guarantees and size the workload
@@ -57,6 +59,7 @@ Read [correctness-and-failures.md](references/correctness-and-failures.md) when 
 | Large files, media delivery, object access, CDN | [content-delivery.md](references/content-delivery.md) |
 | Reservations, stock, scarce resources, payment coordination | [transactional-inventory.md](references/transactional-inventory.md) |
 | Persistent connections, offline delivery, groups, multiple devices | [realtime-messaging.md](references/realtime-messaging.md) |
+| Tenant isolation, external callbacks, private data or access revocation | [security-and-trust-boundaries.md](references/security-and-trust-boundaries.md) |
 
 Add a component only to address a named requirement, measured constraint, or plausible failure with stated impact. For substantial decisions, compare viable alternatives and explain the accepted cost. Do not invent alternatives merely to fill a comparison table.
 
@@ -68,7 +71,7 @@ For existing systems, preserve public interfaces and data outside the requested 
 
 Lead with the recommendation. Include the evidence, assumptions, accepted trade-offs, unresolved risks, and what measurement would change the recommendation. Use [the design template](assets/design-document-template.md) for substantial work, omitting irrelevant sections. Diagrams are optional; use the user's preferred format or portable Mermaid/text when useful. No renderer or other skill is required.
 
-For a review, report each finding as: violated requirement or claim → evidence → failure scenario → impact → correction → verification. Label a missing detail as a question or unproven guarantee, not proof that the implementation is defective.
+For a review, report each finding as: violated requirement or claim → reachable path and evidence → concrete failure sequence → counterevidence checked → impact → correction → verification. Distinguish a demonstrated defect, a conditional risk, and an unresolved check. A missing source is neither proof of failure nor proof of safety. Use [the finding template](assets/review-finding-template.md) when a substantial review needs a durable record; do not require it for every answer.
 
 Before handing over, check:
 

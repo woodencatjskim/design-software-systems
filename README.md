@@ -66,6 +66,8 @@ The workflow connects requirements → invariants and workload → data/contract
 
 Domain references cover [content delivery](skills/design-software-systems/references/content-delivery.md), [transactional inventory](skills/design-software-systems/references/transactional-inventory.md), and [realtime messaging](skills/design-software-systems/references/realtime-messaging.md). They are loaded only when relevant.
 
+For repository reviews, the [review procedure](skills/design-software-systems/references/repository-review.md) traces other writers and observable outputs, constructs a concrete failure sequence, and checks whether existing safeguards disprove it. Findings distinguish demonstrated defects, conditional risks, and unresolved evidence. The [security reference](skills/design-software-systems/references/security-and-trust-boundaries.md) covers relevant identity, tenant, derived-data, and revocation boundaries. A protected path can correctly produce no finding.
+
 ## Examples
 
 - [Small document catalog](examples/small-document-catalog.md): a deliberately simple architecture.
@@ -77,6 +79,8 @@ These are illustrative design notes, not deployed systems or measured performanc
 ## Quality and limits
 
 The repository includes a package validator, regression tests, eight behavioral prompts, and a recorded comparison with an ordinary agent and Anthropic's basic system-design guidance. See [the evaluation record](evals/README.md) for actual results and limitations. Static checks do not prove architectural correctness, and a small model-assisted evaluation does not establish general superiority.
+
+The [repository review suite](evals/repository-review/README.md) adds three matched defect/protected pairs and one missing-evidence case. Executable controls establish what the supplied SQLite fixtures actually do; model responses are evaluated separately. These are development fixtures, not an unseen benchmark or a production reliability test.
 
 The skill does not deploy infrastructure or guarantee throughput, availability, security, or recovery. Those promises require implementation, measurement, and review. Product-specific guarantees should be checked against the deployed version's official documentation.
 

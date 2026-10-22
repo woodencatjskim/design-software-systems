@@ -1,0 +1,23 @@
+Scope: /tmp/dss-review-run-07 only. Service and skill files were not modified. No network access, installs, subagents, test files, other workspaces, or other answers were used.
+
+Files read:
+- task.txt
+- skill/SKILL.md
+- skill/references/workflow.md
+- skill/references/correctness-and-failures.md
+- service/CONTRACT.md
+- service/api.py
+
+Commands/results:
+1. pwd && cat task.txt && cat skill/SKILL.md
+   Confirmed working directory and review scope; read the supplied task and skill.
+2. rg --files service skill/references
+   Found service/CONTRACT.md and service/api.py; listed available reference paths without reading other references.
+3. cat skill/references/workflow.md skill/references/correctness-and-failures.md
+   Read guidance on evidence-based review, acknowledgment boundaries, and failure verification.
+4. nl -ba service/CONTRACT.md && nl -ba service/api.py
+   Read the entire supplied service snapshot with line numbers. append precedes acceptance; adapter durability and recovery remain unavailable.
+5. apply_patch
+   Created answer.md and trace.txt. No execution probe was needed: a substitute adapter would not establish the private deployment adapter's guarantees.
+6. wc -w answer.md && ls -l answer.md trace.txt
+   Confirmed answer.md contains 338 words and both requested output files exist.

@@ -38,6 +38,8 @@ Installation from **`woodencatjskim/design-software-systems` on GitHub also pass
 
 The initial [GitHub Actions run](https://github.com/woodencatjskim/design-software-systems/actions/runs/39713983980) passed the package validator and all seven test methods on **Python 3.11 and 3.13**. Subsequent commits are checked by the same workflow.
 
+The repository-review development extension was also installed locally with Skills CLI 1.5.18 into a separate temporary project for Codex, Claude Code, and Cursor targets. All **13** proposed package files matched source bytes, installed relative references resolved inside the package, and the Claude Code symlink resolved correctly. This is a local candidate-package check, not a new released GitHub-install record or native host invocation test. See the [development evaluation record](../evals/results/2026-10-22-repository-review/README.md).
+
 ## Discovery status
 
 The public GitHub repository has system-design, software-architecture, agent-skills, and agent-specific topics. Direct GitHub installation works. On 2026-10-22, immediately after publication, `skills find design-software-systems --owner woodencatjskim` returned no result. Directory indexing is not under this repository's control; publication and a successful install do not establish immediate skills.sh search visibility.

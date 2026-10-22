@@ -1,0 +1,22 @@
+Files read:
+- task.txt
+- skill/SKILL.md
+- skill/references/repository-review.md
+- skill/references/correctness-and-failures.md
+- skill/references/security-and-trust-boundaries.md
+- skill/references/transactional-inventory.md
+- service/CONTRACT.md
+- service/api.py
+- service/jobs.py
+- service/schema.sql
+- service/schedule.json
+- service/__init__.py
+
+Commands and results:
+1. cat task.txt skill/SKILL.md: read task and skill instructions.
+2. rg --files service skill/references: enumerated supplied service and reference filenames only.
+3. cat selected reference files listed above: read review, correctness, security, and inventory guidance. No linked websites opened.
+4. nl -ba on each listed service file: collected line-numbered contract, writers, schema, and scheduling evidence.
+5. PYTHONDONTWRITEBYTECODE=1 python inline probe: imported supplied API/import functions and loaded supplied schema. In-memory sequential assertions passed: oversized import rejected with allocated=0; API final-unit acceptance; subsequent import/API rejection with allocated=1; missing-SKU import rejection.
+6. Same probe created probe.sqlite in this workspace, ran two ThreadPoolExecutor workers with separate SQLite connections and a barrier, then checked persisted allocation and deleted the temporary database. Results: [('reserve', False), ('import_order', True)]; allocated=1. All assertions passed. Local SQLite version 3.50.2.
+7. Created answer.md and trace.txt using apply_patch. No service or skill files modified. No network, installs, subagents, external workspaces, test suites, rubrics, or other answers accessed.

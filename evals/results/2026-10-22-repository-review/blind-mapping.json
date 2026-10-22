@@ -1,0 +1,72 @@
+{
+  "case-17": {
+    "X": {
+      "run": "run-01",
+      "condition": "A"
+    },
+    "Y": {
+      "run": "run-08",
+      "condition": "B"
+    }
+  },
+  "case-28": {
+    "X": {
+      "run": "run-10",
+      "condition": "B"
+    },
+    "Y": {
+      "run": "run-03",
+      "condition": "A"
+    }
+  },
+  "case-35": {
+    "X": {
+      "run": "run-05",
+      "condition": "A"
+    },
+    "Y": {
+      "run": "run-12",
+      "condition": "B"
+    }
+  },
+  "case-42": {
+    "X": {
+      "run": "run-09",
+      "condition": "A"
+    },
+    "Y": {
+      "run": "run-02",
+      "condition": "B"
+    }
+  },
+  "case-56": {
+    "X": {
+      "run": "run-14",
+      "condition": "B"
+    },
+    "Y": {
+      "run": "run-07",
+      "condition": "A"
+    }
+  },
+  "case-63": {
+    "X": {
+      "run": "run-11",
+      "condition": "A"
+    },
+    "Y": {
+      "run": "run-04",
+      "condition": "B"
+    }
+  },
+  "case-91": {
+    "X": {
+      "run": "run-13",
+      "condition": "A"
+    },
+    "Y": {
+      "run": "run-06",
+      "condition": "B"
+    }
+  }
+}

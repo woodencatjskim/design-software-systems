@@ -1,0 +1,190 @@
+{
+  "cases": [
+    {
+      "case_id": "case-17",
+      "X": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "X:1 identifies a reachable capacity violation. jobs.py:22 increments without a capacity predicate; schema.sql:4-5 checks only nonnegative values."},
+          "evidence": {"status": "pass", "rationale": "X:3 connects schedule.json:1 to jobs.py:20-25, contrasts api.py:19-24, and identifies the missing upper bound at schema.sql:4-5. The cited line ranges contain the decisive operations."},
+          "reasoning": {"status": "pass", "rationale": "X:5 gives API reservation then partner import, yielding allocation 2 at capacity 1 from schema.sql:7. X:3 explains why IntegrityError does not protect this path; X:11 includes legitimate exact-capacity behavior. This sequence follows from source; its claimed execution is independently unverified."},
+          "repair": {"status": "pass", "rationale": "X:7-11 proposes the existing atomic predicate, optional shared operation and database invariant, reconciliation before migration, both writer orderings, valid acceptance, and unchanged state on rejection. These distinguish the actual defect from transaction serialization."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: X:5 reports reproduction, but no execution trace or authenticated output is supplied. Static source independently supports the described result."
+      },
+      "Y": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "Y:1 identifies the enabled importer as the violating writer, consistent with jobs.py:22 and schedule.json:1."},
+          "evidence": {"status": "pass", "rationale": "Y:3-7 cites the enabled entry, guarded API, unconditional importer, seed row, full schema, and IntegrityError handler at the correct source lines."},
+          "reasoning": {"status": "pass", "rationale": "Y:5 gives the sequential capacity-1 failure and explains that subsequent API rejection cannot undo it; Y:7 rules out positive-input validation, atomicity, and hidden policies. Valid API allocation is included. The reported experiment is unverified, but the source supports the sequence."},
+          "repair": {"status": "pass", "rationale": "Y:9-11 proposes the existing guarded UPDATE and optional CHECK, with existing-row reconciliation and verification of both orderings, exact-capacity acceptance, excessive-request rejection, and contention. Scheduler checks at Y:13 are explicitly missing integration evidence."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: Y:5 reports an in-memory reproduction; no execution provenance is provided."
+      },
+      "preference": "tie",
+      "preference_reason": "Both locate the same material defect, explain why existing checks fail, and give proportionate repairs with valid and invalid path verification. Differences in ancillary verification do not materially change the decision."
+    },
+    {
+      "case_id": "case-42",
+      "X": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "X:1 rules out a material allocation defect. schema.sql:6 enforces allocated <= capacity across both writers."},
+          "evidence": {"status": "pass", "rationale": "X:3-5 connects schedule.json:1, api.py:19-24, jobs.py:19-28 and schema.sql:1-6, including the decisive CHECK and exception/transaction boundaries."},
+          "reasoning": {"status": "pass", "rationale": "X:5 explains CHECK rejection, rollback and False; X:7 describes both writer orderings, including a successful initial import and accepted API reservation. Claimed probes are not authenticated; their stated results agree with the source."},
+          "repair": {"status": "pass", "rationale": "X:9 explicitly avoids mandatory repair and labels the guarded import optional. X:11 proposes invariant-preserving concurrency and rejection checks, while treating missing scheduler behavior as an evidence gap rather than a defect."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: X:7 reports isolated probes without supplied execution records."
+      },
+      "Y": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "Y:1 preserves the database invariant and rules out the suspected oversell, matching schema.sql:6."},
+          "evidence": {"status": "pass", "rationale": "Y:3-5 cites schedule.json:1, api.py:19-24, jobs.py:19-28 and schema.sql:4-6. These establish reachability, both writes, shared enforcement and rejection handling."},
+          "reasoning": {"status": "pass", "rationale": "Y:5 explains the final-unit API success followed by a rejected and rolled-back import. Y:9 requests both writer orderings, covering a valid importer. Concurrency cannot remove the constraint; the exact concurrent probe at Y:7 remains unauthenticated."},
+          "repair": {"status": "pass", "rationale": "Y:9 requires no corrective change, retains the CHECK, and makes application-side guarding optional. Y:11 correctly distinguishes the contract's retention premise from missing end-to-end scheduler verification."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: Y:7 reports a SQLite version and concurrent result; neither the environment nor execution is independently evidenced."
+      },
+      "preference": "tie",
+      "preference_reason": "Both identify authoritative database enforcement and its rejection path, avoid a false oversell finding, and preserve legitimate allocation. Unauthenticated concurrent-experiment claims do not confer a preference."
+    },
+    {
+      "case_id": "case-28",
+      "X": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "X:1 rules out a tenant-isolation defect in the supplied path, as supported by both tenant predicates in repository.py:19,36-37."},
+          "evidence": {"status": "pass", "rationale": "X:3-10 cites CONTRACT.md:3, api.py:20 and repository.py:18-20,35-38. These show trusted tenant provenance, both response branches and filtering before aggregation."},
+          "reasoning": {"status": "pass", "rationale": "X:8-10 explains why foreign-only categories and foreign contributions to shared counts are excluded, and distinguishes identity validation from trusted authentication. X:12 covers legitimate alpha/beta responses; claimed execution is unverified."},
+          "repair": {"status": "pass", "rationale": "X:1,14-16 avoids redundant isolation/authentication infrastructure and retains discriminating shared-category and endpoint regression coverage. Repair requires an actual counterexample or deployed-path discrepancy."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: X:12 says verification was performed, but no supporting run artifact is supplied."
+      },
+      "Y": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "Y:1 correctly retains the protected query structure; repository.py:19 and 36 constrain both fields by tenant."},
+          "evidence": {"status": "pass", "rationale": "Y:3-5 cites the trusted contract, both calls at api.py:20, and the precise document/facet SQL ranges at repository.py:18-20,35-38."},
+          "reasoning": {"status": "pass", "rationale": "Y:5 explains filtering before COUNT/GROUP BY, including overlapping categories. Y:7 gives correct legitimate alpha and beta outputs from schema.sql:8-10 and a shared-category control; claimed runs are not independently authenticated."},
+          "repair": {"status": "pass", "rationale": "Y:1,9 avoids unjustified repair and proposes endpoint checks for shared categories and empty tenants. It respects the contract's exclusion of authentication implementation and indexing lag."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: Y:7 describes performed verification without execution provenance."
+      },
+      "preference": "tie",
+      "preference_reason": "Both explain protection of every returned field and the decisive shared-category case, without demanding redundant authentication. No material correctness or repair-decision difference is established."
+    },
+    {
+      "case_id": "case-63",
+      "X": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "X:1 identifies the category/count confidentiality defect; repository.py:36 aggregates all documents."},
+          "evidence": {"status": "pass", "rationale": "X:3-5 connects CONTRACT.md:3 and api.py:20 with scoped repository.py:18-20, unscoped repository.py:33-37, and the cross-tenant seed rows at schema.sql:8-10."},
+          "reasoning": {"status": "pass", "rationale": "X:5 correctly derives disclosure of beta acquisition/finance to alpha and inflated shared-category counts, while retaining the counterevidence that titles remain scoped. Its experiment claim is unverified, but the failure sequence follows directly from SQL."},
+          "repair": {"status": "pass", "rationale": "X:7-9 adds the existing parameterized tenant predicate before grouping and preserves the schema/response. Endpoint verification checks private/shared categories, empty tenants, exact valid responses and invariance under another tenant's changes."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: X:5 reports original-query execution; X:9 appropriately distinguishes it from proposed repair verification. No execution artifact authenticates either prior run."
+      },
+      "Y": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "Y:1 correctly finds one material facet-isolation defect, consistent with repository.py:36."},
+          "evidence": {"status": "pass", "rationale": "Y:3-7 cites api.py:20, both repository paths, schema.sql:8-10 and CONTRACT.md:3's explicit exclusion of hidden filters/policies; the referenced source supports the claims."},
+          "reasoning": {"status": "pass", "rationale": "Y:5-7 gives reachable category/count exposure without forged identity or concurrency, explains why protected document rows do not protect facets, and avoids claiming title disclosure. Claimed execution is not independently proven."},
+          "repair": {"status": "pass", "rationale": "Y:9-11 proposes filtering source rows before aggregation, explains why filtering category labels is inadequate, and specifies exact valid tenant results and cross-tenant mutation checks. Repair tests are explicitly proposed, not completed."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: Y:5 reports a probe without run records. The exact output is consistent with the supplied SQL and seed rows."
+      },
+      "preference": "tie",
+      "preference_reason": "Both correctly delimit leakage to categories/counts and repair the source-row aggregation boundary with discriminating endpoint tests. Y's explicit warning about label filtering is useful but does not alter the equally correct repair in X."
+    },
+    {
+      "case_id": "case-35",
+      "X": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "X:1-3 correctly finds acceptance before durable commit. storage.py:22 yields before storage.py:23 commits, and api.py:22 forwards immediately under CONTRACT.md:3."},
+          "evidence": {"status": "pass", "rationale": "X:3 accurately cites the full endpoint/write/yield/commit path, immediate-transmission contract, and sole recovery source at schema.sql:1."},
+          "reasoning": {"status": "pass", "rationale": "X:3 explains generator suspension and loss of the uncommitted insert after acceptance; X:5 includes successful full consumption as counterevidence to general persistence failure. The claimed os._exit probe is unverified. X:9's additional active-transaction consequence is source-supported and independently checked narrowly by this reviewer."},
+          "repair": {"status": "pass", "rationale": "X:7 moves successful commit before acceptance, verifies process loss at the first event and failure-without-acceptance. X:11 requests owned-transaction rollback and closure/failure cleanup checks; X:13 correctly conditions operational impact on connection lifetime."}
+        },
+        "unsupported_material_findings": [],
+        "additional_concern_assessment": "X:9 calls transaction lifetime a second defect. This is not merely absent-key noise: storage.py:20-23 has no cleanup, and closing a valid stream at the first yield demonstrably leaves its transaction active. Lock/reuse impact is conditional on the connection staying open, as X explicitly says. It is a defensible implementation concern, not a second independently proven breach of the acceptance contract. Insert-failure frequency and production pooling are not established.",
+        "execution_provenance": "unverified: X:5 and X:9 report author experiments without execution records. The reviewer's separate in-memory generator-close check confirms only the active-transaction observation, not the author's process-loss experiment."
+      },
+      "Y": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "Y:1-3 identifies the premature acceptance defect at storage.py:20-23 and api.py:22."},
+          "evidence": {"status": "pass", "rationale": "Y:3-5 cites the exact BEGIN/INSERT/yield/commit order, immediate event forwarding, CONTRACT.md:3's recovery premises and schema.sql:1-2's sole authoritative copy."},
+          "reasoning": {"status": "pass", "rationale": "Y:3-7 explains why FULL synchronization and BEGIN IMMEDIATE do not commit a pending insert and contrasts the failing interruption boundary with normal full consumption. The claimed child-process result is unverified, while the source supports the causal sequence."},
+          "repair": {"status": "pass", "rationale": "Y:9-11 moves commit ahead of acceptance, respects connection ownership for cleanup, and tests first-event process loss, commit failure and generator closure. It avoids unnecessary replication or delivery changes."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: Y:7 describes a process-loss reproduction; no execution evidence is supplied. Y:11 clearly labels repair checks as proposed."
+      },
+      "preference": "tie",
+      "preference_reason": "Both establish the same acceptance violation and prescribe commit-before-yield plus owned-transaction cleanup with discriminating checks. X's extra transaction-lifetime observation is defensible and qualified; Y already incorporates the consequential cleanup into its repair. Neither merits a false-positive penalty."
+    },
+    {
+      "case_id": "case-91",
+      "X": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "X:1 rules out a violation of the stated acceptance/durability contract; storage.py:22 commits before storage.py:23 yields."},
+          "evidence": {"status": "pass", "rationale": "X:3-5 cites CONTRACT.md:3, schema.sql:1, api.py:22 and storage.py:20-23, establishing the full path and the contractual recoverability of committed data."},
+          "reasoning": {"status": "pass", "rationale": "X:5 explains why suspending at the event cannot precede commit, why failure before commit prevents acceptance, and why persisted-but-unacknowledged data is outside the one-way promise. X:7's claimed kill test is unverified, not the basis of this pass."},
+          "repair": {"status": "pass", "rationale": "X:1,9-11 preserves the protected ordering. Its rollback suggestion is expressly conditional on ownership and reuse evidence, with a specific failed-operation/valid-operation check, rather than a mandatory durability redesign."}
+        },
+        "unsupported_material_findings": [],
+        "additional_concern_assessment": "X:9 accurately notes absence of rollback at storage.py:20-22 but makes later request impact conditional on unspecified reuse/cleanup. A failed operation cannot emit acceptance. This is a legitimate conditional operational question, not an unsupported accepted-message-loss finding or a required fix under CONTRACT.md:3.",
+        "execution_provenance": "unverified: X:7 reports a subprocess kill/recovery experiment without execution records. The reviewer's separate check confirms transaction completion at the first yield, not process-kill provenance."
+      },
+      "Y": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "Y:1 correctly retains commit-before-acceptance and rules out the seeded concern, consistent with storage.py:22-23."},
+          "evidence": {"status": "pass", "rationale": "Y:3-5 connects CONTRACT.md:3, api.py:20-22, storage.py:20-23 and schema.sql:1-2, including decisive committed-data recovery assumptions."},
+          "reasoning": {"status": "pass", "rationale": "Y:5-7 explains the protected first-yield boundary, exception behavior and the permitted ambiguous outcome of commit followed by loss before acceptance. Its SIGKILL result and version claims at Y:9 are independently unverified."},
+          "repair": {"status": "pass", "rationale": "Y:11 correctly avoids repair, retains first-event process-loss regression verification, and limits deployment checks to the promised scope rather than requiring host/disk resilience."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "unverified: Y:9 reports SIGKILL recovery and Python/SQLite versions; these claims are not authenticated by the supplied materials."
+      },
+      "preference": "tie",
+      "preference_reason": "Both correctly prove ordering from source and respect the process-loss scope. X's conditional cleanup question is appropriately limited and does not undermine its no-repair conclusion; reported kill tests provide no independently authenticated preference."
+    },
+    {
+      "case_id": "case-56",
+      "X": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "X:1 retains the acceptance guarantee as unresolved rather than asserting safety or loss, matching CONTRACT.md:3's unavailable adapter semantics."},
+          "evidence": {"status": "pass", "rationale": "X:3 cites api.py:30-33 for append-before-acceptance and api.py:6-16 for the semantics-free protocol. X:5 identifies the explicitly missing implementation/configuration/recovery in CONTRACT.md:3."},
+          "reasoning": {"status": "pass", "rationale": "X:3-5 explains normal return and exception paths, a conditional memory-only loss sequence, and a legitimate recoverably persistent implementation that needs no endpoint change. It does not treat method naming as durability evidence."},
+          "repair": {"status": "pass", "rationale": "X:7-11 requests deployed adapter/version, commit boundary, configuration and recovery path; repair is conditional on early acknowledgement. It proposes real-adapter first-acceptance process-loss recovery and failure checks and explicitly says no experiment was executed."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "No performed experiment is claimed; X:11 explicitly labels verification as future work."
+      },
+      "Y": {
+        "criteria": {
+          "disposition": {"status": "pass", "rationale": "Y:1 treats the durability boundary as unproven, not a demonstrated data-loss defect, matching CONTRACT.md:3."},
+          "evidence": {"status": "pass", "rationale": "Y:3 cites the precise call/return order at api.py:32-33, missing protocol guarantee at api.py:6-16 and explicit unavailable implementation/configuration at CONTRACT.md:3."},
+          "reasoning": {"status": "pass", "rationale": "Y:3-5 contrasts worker-memory loss with recoverable persistence and explains that both implementations fit the interface. It also correctly states that append exceptions prevent the shown function from returning acceptance."},
+          "repair": {"status": "pass", "rationale": "Y:7-11 requests deployed implementation/version, effective buffering/commit semantics, storage lifetime and restart discovery. It makes infrastructure changes conditional and proposes actual-adapter process-loss and write-failure verification without claiming completed tests."}
+        },
+        "unsupported_material_findings": [],
+        "execution_provenance": "No performed experiment is claimed; Y:11 explicitly identifies proposed verification."
+      },
+      "preference": "tie",
+      "preference_reason": "Both preserve the evidence gap, explain unsafe and safe implementations, and request the concrete adapter/commit/recovery evidence needed before repair. Neither falsely infers durability from a synchronous method call."
+    }
+  ],
+  "blocking_issues": [],
+  "limitations": [
+    "This is a condition-blinded source-based review against the supplied frozen rubric and answer key, not an independent external audit. Condition identities were neither sought nor inferred.",
+    "All 14 answers were read and their cited source lines checked. Most references use service/<file>, but fixtures are packaged as cases/<case-id>/<file> with no service directory. Those citations were normalized to the unique matching fixture-relative file. This packaging-prefix discrepancy is noted rather than treated as missing evidence, because the cited contents and line numbers match. case-42 X and case-56 Y already use unprefixed file names.",
+    "Pass on reasoning/evidence means the source supports the causal claim, not that the author's claimed experiment occurred. Twelve answers report experiments; execution traces, exact scripts and independently authenticated results are not supplied. Specific claimed runtime versions and production implications remain unverified.",
+    "The reviewer ran only a narrow independent in-memory check of storage.append for cases 35 and 91: first-event/after-close in_transaction was True/True for 35 and False/False for 91. This verifies the extra stream-lifetime concern and protected ordering, not either author's process-kill experiment. No service or answer files were edited.",
+    "Additional concerns were assessed beyond the answer key: transaction abandonment/rollback, conditional scheduler retention and lock handling, missing adapter recovery, and alleged need for authentication or replication. No unsupported material defect was found. Conditional caveats were not counted as false positives.",
+    "All 56 frozen-property judgments are pass and all seven comparisons tie. These judgments reflect materially equivalent source-supported answers, not proof of equal author execution or production reliability."
+  ]
+}

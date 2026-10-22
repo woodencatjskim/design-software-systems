@@ -1,0 +1,11 @@
+No material architecture defect is established against the supplied contract; retain the current commit-before-acceptance ordering.
+
+The required guarantee is that every accepted message remains readable after writer-process loss. The contract specifies explicit SQLite transactions, synchronous=FULL, recoverable committed data, immediate transmission of yielded events, and a complete active path (service/CONTRACT.md:3).
+
+The endpoint validates inputs and delegates directly to storage with `yield from` (service/api.py:20–22). Storage starts a transaction, inserts the message, completes `connection.commit()`, and only then yields `accepted` (service/storage.py:20–23). Consequently, obtaining the first acceptance event necessarily resumes the generator through the commit. Suspending or abandoning the generator at that yield cannot leave this accepted message awaiting a later commit. The schema stores the message in the authoritative database (service/schema.sql:1–2); no additional upstream recovery mechanism is needed for the stated failure scope.
+
+The suspected failure sequence—acceptance transmitted, writer killed, uncommitted message lost—is blocked by this ordering. An insertion or commit exception prevents the acceptance yield. Process loss before commit therefore does not demonstrate loss of an accepted message; loss after commit but before acceptance concerns an ambiguous client outcome, with retries explicitly excluded (service/CONTRACT.md:3).
+
+Verification performed: an isolated subprocess used the supplied endpoint and schema with the specified connection settings, yielded its first `accepted` event, and remained suspended without exhausting the generator. After SIGKILL, a new connection recovered the exact message identifier and body. This passed on Python 3.13.5 / SQLite 3.50.2.
+
+No repair is justified by this snapshot. Preserve this subprocess check as regression coverage if implementation changes. The probe corroborates one local execution; it does not establish deployed configuration or host/disk-loss durability. If deployment assurance is required, verify the actual connection settings and repeat the same process-loss check there. Host/disk loss and recipient delivery are outside the contract, so their absence is not a finding.

@@ -1,0 +1,27 @@
+Scope: /tmp/dss-review-run-06 only. No network, installs, subagents, service edits, or skill edits.
+
+Files read:
+- task.txt
+- skill/SKILL.md
+- skill/references/repository-review.md
+- skill/references/correctness-and-failures.md
+- skill/references/security-and-trust-boundaries.md
+- service/CONTRACT.md
+- service/api.py
+- service/storage.py
+- service/schema.sql
+- service/__init__.py
+
+Commands/results:
+1. cat task.txt skill/SKILL.md — read evaluation task and skill instructions; exit 0.
+2. rg --files service skill/references — enumerated supplied service and available references; exit 0. No other workspace, tests, rubrics, or answers inspected.
+3. cat the three reference files listed above — read review method, durability, and trust-boundary guidance; exit 0.
+4. nl -ba for each supplied service file listed above — captured line-numbered complete active path and contract; exit 0.
+5. python -B heredoc — created a temporary database under this workspace using service/schema.sql; spawned Python -B child importing service.api.submit with isolation_level=None and synchronous=FULL; consumed only the first yielded event; killed writer with SIGKILL; opened a fresh reader and asserted the exact message survived. Child was sleeping with generator suspended at acceptance, not exhausted. Temporary directory automatically removed; bytecode writing disabled.
+   Output: event=accepted; writer_exit=-9; recovered_rows=[('message-1', 'durable body')]
+   Runtime: python=3.13.5; sqlite=3.50.2
+   Result: exit 0; assertions passed.
+6. apply_patch — created answer.md and trace.txt only.
+7. wc -w answer.md; test -s answer.md && test -s trace.txt — answer has 294 words; both output files exist and are nonempty; exit 0.
+
+Interpretation: commit precedes acceptance in the complete supplied path; the local process-loss probe confirms recovery for its single execution. No deployment or broader failure-scope claims tested.

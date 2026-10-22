@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "case-17",
+      "family": "inventory",
+      "expected": "defect",
+      "decisive_evidence": "The enabled jobs.import_order increments allocated without the API predicate, and schema.sql has no upper capacity constraint.",
+      "observation": "Reserve the one desk through the API, then import another: allocated becomes 2 while capacity is 1.",
+      "repair": "Enforce capacity for every writer, with an atomic guard or database invariant and explicit rejection handling. Verify both entry paths and valid orders."
+    },
+    {
+      "id": "case-42",
+      "family": "inventory",
+      "expected": "protected",
+      "decisive_evidence": "schema.sql CHECK allocated <= capacity covers the import too; jobs.import_order catches IntegrityError and the transaction rolls back.",
+      "observation": "After the API reserves the desk, the import returns false and allocated stays 1. A fresh valid import succeeds.",
+      "repair": "Do not report missing application-side checking as an oversell defect. Explain the database safeguard and verify rejected and accepted operations."
+    },
+    {
+      "id": "case-28",
+      "family": "search",
+      "expected": "protected",
+      "decisive_evidence": "Both result_page and facets constrain tenant_id from the trusted middleware identity.",
+      "observation": "Alpha sees only Team handbook and handbook:1; beta categories are absent.",
+      "repair": "No tenant leak is established in this supplied path. Verify both documents and facets; do not demand a redundant auth implementation in scope."
+    },
+    {
+      "id": "case-63",
+      "family": "search",
+      "expected": "defect",
+      "decisive_evidence": "api.search returns facets; repository.facets aggregates all tenants although result_page scopes document rows.",
+      "observation": "Alpha's category panel exposes acquisition and finance categories/counts from beta.",
+      "repair": "Scope the aggregation with the authenticated tenant before grouping. Verify all returned fields and legitimate same-tenant results."
+    },
+    {
+      "id": "case-35",
+      "family": "acceptance",
+      "expected": "defect",
+      "decisive_evidence": "api.submit forwards generator events immediately; storage.append yields accepted before connection.commit.",
+      "observation": "Interruption after the first yield but before resumption leaves no committed record after reopening the database.",
+      "repair": "Commit before emitting accepted. Verify interruption at the event boundary and normal completion."
+    },
+    {
+      "id": "case-91",
+      "family": "acceptance",
+      "expected": "protected",
+      "decisive_evidence": "storage.append commits before yielding accepted; the supplied contract grants recovery of committed SQLite data after process loss.",
+      "observation": "Reopening after the first event retains the message.",
+      "repair": "Do not report premature acknowledgement or require replication for the supplied process-loss contract. Host/disk loss is explicitly outside scope."
+    },
+    {
+      "id": "case-56",
+      "family": "missing-evidence",
+      "expected": "unresolved",
+      "decisive_evidence": "submit returns accepted after adapter.append returns, but the implementation and durability semantics of that adapter are unavailable.",
+      "observation": "Neither successful persistence nor acknowledged data loss is established by the method name or call site.",
+      "repair": "Retain the concern and request adapter commit/flush semantics, deployment configuration, and a process-loss recovery check. Do not mandate a redesign as a confirmed fix."
+    }
+  ]
+}
