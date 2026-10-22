@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Software Systems"
+  short_description: "Practical architecture with explicit correctness checks"
+  default_prompt: "Use $design-software-systems to design or review this system, explain the trade-offs, and verify its failure behavior."

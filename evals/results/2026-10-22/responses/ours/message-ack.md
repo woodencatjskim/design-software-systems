@@ -1,0 +1,15 @@
+Exercise: message-ack
+
+The proposal contradicts both promises. Repair the acknowledgement boundary and remove the five-second batch from the live delivery path before adding components.
+
+1. **Accepted messages can disappear.** The server returns “sent” before Kafka persistence, leaving the only copy in process memory. A crash immediately after that response loses an accepted message. Buffer eviction also deliberately loses accepted work during Kafka outages. Reply with durable acceptance only after the configured durable log acknowledges persistence sufficient to survive chat-process failure. Reject admission with a retryable error when that boundary is unavailable; a client may retain a locally pending message. Never evict acknowledged work.
+
+2. **Live notifications cannot ensure recovery.** Redis Pub/Sub provides no durable replay for a disconnected subscriber. Keep it only as an optional notification path. A missed publication must be repaired by reading durable messages using conversation sequence and device cursor. Pub/Sub loss does not necessarily lose a persisted message, but the proposed recovery path is unspecified.
+
+3. **Five-second pre-delivery batches violate the 500 ms target.** A message arriving just after a batch flush can wait nearly five seconds before delivery begins. Deliver from the durable log promptly; make Cassandra archival writes asynchronous. The actual sub-500 ms claim remains unproven until measured, even after this contradiction is removed.
+
+Minimal revised flow: authenticate membership and validate limits → deduplicate a stable sender message ID → persist to Kafka with the required acknowledgement configuration → return accepted → consume immediately for online device delivery and separately for Cassandra persistence. If deduplication allows duplicate log records, consumers and devices must still suppress duplicate logical effects using that stable ID. Partition ordering by conversation where that is the promised ordering scope.
+
+Track device acknowledgements independently from acceptance. Reconnect and gap repair read recoverable history. Commit archival consumer progress only after Cassandra persistence succeeds; make archival writes idempotent. Retain log data long enough to cover the supported archival outage and recovery window, and stop new admission before bounded storage or retention would destroy unarchived accepted messages. Define longer-term retention separately. Bound delivery retries and backlog age; offline delivery follows the declared retention policy.
+
+Verify process termination immediately after acceptance, Kafka unavailability, full admission buffers, dropped Pub/Sub notifications, duplicate sends, archival consumer restart, and reconnect with missing messages. Every accepted ID must remain recoverable. Measure online delivery from sender submission to recipient receipt at the agreed percentile and realistic load. “Under 500 ms” needs an explicit percentile, network scope, and overload policy; arbitrary client disconnection cannot satisfy an unconditional deadline. Exact deployed Kafka/Cassandra durability settings require validation before implementation.

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "small-service",
+      "prompt": "We have two developers building an internal document catalog for 80 employees in one region. Peak traffic is 15 requests/second, the database is 2 GB, files total 40 GB, and downtime up to four hours is acceptable. We already operate PostgreSQL and one application service. Should we add Kafka, Redis, microservices, and database sharding now? Recommend a proportionate architecture and what evidence would make you change it. Do not ask follow-up questions."
+    },
+    {
+      "id": "booking",
+      "prompt": "Design the critical booking flow for a hotel. Inventory is per hotel, room type, and night. Stays can cover several nights, overbooking is forbidden, clients retry requests, and different guests can compete for the last room. Payments are external and may time out after charging. Holds expire after ten minutes; a successful payment callback may arrive later. Give the data/transaction boundary, idempotency behavior, payment reconciliation, and concrete verification scenarios."
+    },
+    {
+      "id": "message-ack",
+      "prompt": "Review this messaging proposal. The server replies sent immediately on receipt, then writes to Kafka asynchronously. Redis Pub/Sub forwards online messages. A memory buffer holds messages when Kafka is down and drops the oldest entries when full. Cassandra writes are batched every five seconds before delivery. Product promises no loss of accepted messages after chat-process failure and online end-to-end delivery under 500 ms. Identify contract violations and propose a minimal repair."
+    },
+    {
+      "id": "encrypted-search",
+      "prompt": "Our chat service must use end-to-end encryption so servers cannot read message plaintext. We also want server workers to extract mentions, build plaintext full-text indexes, and generate link previews from every message. Give a feasible architecture or explain which requirements must change. Include implications for media and adding a second device; do not design a new cryptographic protocol."
+    },
+    {
+      "id": "group-fanout",
+      "prompt": "Estimate delivery work for 100 new group messages per second. Each group has exactly 100 members, each member has three online devices, and a send originates on one device. Every other member's devices and the sender's other two devices must receive the message. Message bodies are 1 KB in decimal units, stored once. Explain deliveries/second, payload bandwidth, other writes, and whether deleting the server record after the first device ACK supports a 30-day offline sync promise."
+    },
+    {
+      "id": "schema-evolution",
+      "prompt": "Plan a compatible change to an existing reservation API. Observed contract: POST /reservations returns {id, status}; both old and new mobile clients remain active for 60 days. Existing table: reservations(id primary key, user_id, status, created_at); status is reserved or canceled. New requirement: support payment-pending holds without breaking old clients, and stop overselling. No repository is available beyond this excerpt. Explain uncertainties, additive migration, mixed-version behavior, backfill, cutover, and rollback limits. Do not invent inspected code."
+    },
+    {
+      "id": "private-upload",
+      "prompt": "Design private attachment upload/download for a regional B2B app using PostgreSQL and S3. Tenants must not access each other's objects. An S3 upload may succeed while metadata creation fails, and completion callbacks may repeat. A colleague claims a presigned URL is automatically single-use and files become visible as soon as the URL is issued. Review those claims, propose publication and cleanup behavior, and decide whether a CDN is necessary without any traffic measurements."
+    },
+    {
+      "id": "bounded-question",
+      "prompt": "In two short paragraphs, explain what an idempotency key means. I only want a conceptual explanation, not a system design, document, repository inspection, or implementation."
+    }
+  ]
+}

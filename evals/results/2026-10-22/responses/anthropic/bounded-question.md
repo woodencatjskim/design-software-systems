@@ -1,0 +1,3 @@
+An idempotency key is a unique label a client attaches to one intended action, such as placing an order. If the client retries because the response was lost, it sends the same key. The service recognizes that the retry represents the same action and avoids creating another order, returning the recorded outcome instead.
+
+Use a new key for a genuinely new action. Reusing a key with different details should produce an error rather than silently changing the original request. The guarantee depends on the service's rules, including how long it remembers keys and which operations they cover; the key alone does not make every side effect safe to repeat.
