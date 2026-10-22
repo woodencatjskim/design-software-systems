@@ -1,0 +1,19 @@
+Read files:
+- task.txt
+- skill/SKILL.md
+- skill/references/repository-review.md
+- skill/references/correctness-and-failures.md
+- skill/references/security-and-trust-boundaries.md
+- service/CONTRACT.md
+- service/api.py
+- service/repository.py
+- service/schema.sql
+- service/__init__.py
+
+Commands/results:
+1. cat task.txt and skill/SKILL.md: established task and skill procedure.
+2. cat three listed references; rg --files service: found five supplied service files.
+3. nl -ba on all five service files: captured source locations; both queries filter tenant before returning/aggregating.
+4. PYTHONDONTWRITEBYTECODE=1 python inline probe: used sqlite3 in-memory database and actual service.api.search, loaded schema.sql; asserted exact alpha/beta responses, absent tenant emptiness, cross-tenant shared-category isolation, SQL-shaped tenant emptiness, and invalid tenant rejection. All assertions passed. Added test data only in memory; no service edits or bytecode writes.
+5. Wrote answer.md and trace.txt in this isolated workspace.
+No network, installs, subagents, external workspaces, rubric, or test files accessed.

@@ -22,6 +22,8 @@ The course informed the five-stage workflow and the content-delivery, reservatio
 
 These were qualitative design references, not copied packages. We did not incorporate their scripts, templates, or full skill texts into the installed skill. The development evaluation uses a separately fetched Anthropic reference; the public evidence includes its source identity and hash, not a bundled copy of that instruction file. The evaluation compares behavior under a small task set, not author reputation or installation counts.
 
+The repository-review extension also studied [Matt Pocock's architecture review](https://github.com/mattpocock/skills/blob/main/skills/engineering/improve-codebase-architecture/SKILL.md) for caller/test-oriented investigation and [Anthropic's blind comparator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/agents/comparator.md) for hiding condition identity during evaluation. The extension uses independently written instructions and synthetic fixtures; it does not require their auxiliary skills, HTML renderers, or runtime tools.
+
 ## Primary technical references
 
 - [PostgreSQL transaction isolation](https://www.postgresql.org/docs/18/transaction-iso.html): isolation and serialization retries.
@@ -32,6 +34,7 @@ These were qualitative design references, not copied packages. We did not incorp
 - [Redis Pub/Sub](https://redis.io/docs/latest/develop/pubsub/): at-most-once delivery.
 - [Cassandra BATCH](https://cassandra.apache.org/doc/latest/cassandra/developing/cql/dml.html#batch) and [architecture](https://cassandra.apache.org/_/cassandra-basics.html): batch and replication qualifications.
 - [Signal X3DH](https://signal.org/docs/specifications/x3dh/) and [Double Ratchet](https://signal.org/docs/specifications/doubleratchet/): key agreement and message-key evolution.
+- [OWASP threat modeling](https://owasp.org/www-community/Threat_Modeling): connecting scoped threats to mitigations and verification.
 
 Consult documentation for the deployed version before implementation; this project does not freeze vendor behavior.
 

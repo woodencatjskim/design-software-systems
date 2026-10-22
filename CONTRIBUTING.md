@@ -22,6 +22,8 @@ The validator checks package metadata, relative file destinations, self-containe
 4. Run the applicable cases in `evals/prompts.json`. Keep answer keys hidden from the answering agent and disclose model/environment limits.
 5. Record before/after outputs and review meaningful criteria from `evals/rubric.md`.
 
+For repository-review changes, also follow [the matched-fixture protocol](evals/repository-review/README.md). Keep each protected counterpart and verify its legitimate behavior: finding more issues is not progress if it creates false positives. Freeze prompts, criteria, and source hashes before an answerer sees the task; provide only one fixture and skill snapshot per fresh session. Keep fixture behavior tests separate from semantic grading and retain unedited responses, including failures and inconclusive results.
+
 No vendor-specific runtime, renderer, account, or network access should become a requirement for ordinary use. Repository development tools may have explicit dependencies. Use type hints, descriptive names, argument validation, and docstrings for Python tools; test both accepted and rejected inputs for core validation logic.
 
 ## Sources and releases

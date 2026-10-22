@@ -1,0 +1,25 @@
+Files read:
+- task.txt
+- skill/SKILL.md
+- skill/references/workflow.md
+- skill/references/correctness-and-failures.md
+- service/CONTRACT.md
+- service/api.py
+- service/repository.py
+- service/schema.sql
+Python import also loaded service/__init__.py; bytecode writing was disabled.
+
+Commands/results:
+1. cat task.txt skill/SKILL.md: read task and evaluation skill.
+2. rg --files service skill/references: listed supplied source and references.
+3. cat skill/references/workflow.md skill/references/correctness-and-failures.md: read review and correctness guidance.
+4. nl -ba for service/CONTRACT.md, api.py, repository.py, schema.sql: inspected complete contract, endpoint, query implementation, and schema with line references.
+5. PYTHONDONTWRITEBYTECODE=1 python with inline isolated probe: sqlite3.connect(':memory:'), executescript of supplied schema, imported service.api.search.
+   alpha => documents [(1, 'Team handbook')], facets [('handbook', 1)].
+   beta => documents [(2, 'Unannounced acquisition'), (3, 'Confidential budget')], facets [('acquisition', 1), ('finance', 1)].
+   missing and "alpha' OR 1=1 --" => empty documents and facets.
+   Inserted beta document (4, 'beta', 'Other handbook', 'handbook') into memory only; assertions confirmed alpha response unchanged and beta gained handbook count 1.
+   Empty string and None tenant => ValueError('An authenticated tenant is required').
+   Exit code 0; all assertions passed.
+
+No network, installations, subagents, other workspaces, repository tests, or external answers accessed. No service or skill files modified. Created answer.md and this trace only.

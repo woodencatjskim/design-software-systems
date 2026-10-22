@@ -1,0 +1,212 @@
+{
+  "date": "2026-10-22",
+  "task": "Review the supplied service snapshot against CONTRACT.md. Identify material architecture defects, if any, and the evidence needed to decide on a repair. Cite relative file names and line numbers, explain reachable consequences, and suggest proportionate corrections and verification. Distinguish what this snapshot establishes from what it cannot establish. Do not modify the service. Answer in English, at most 450 words. Use plain file:line references, not Markdown file links.",
+  "baseline_commit": "b82fbf8354d12ec7cf271428d3fb40183c9773b9",
+  "conditions": {
+    "A": "released v0.1.0",
+    "B": "proposed repository-review guidance"
+  },
+  "runtime": "fresh application subagent per case and condition, inherited model settings, no override",
+  "model_id": "exact pinned identifier not exposed",
+  "sampling_parameters": "not exposed",
+  "token_usage": "not independently measured",
+  "isolation": "separate directories; filesystem access restrictions are procedural, not OS-enforced",
+  "runs": [
+    {
+      "id": "run-01",
+      "case": "case-17",
+      "condition": "A",
+      "status": "completed",
+      "answer_words": 362
+    },
+    {
+      "id": "run-02",
+      "case": "case-42",
+      "condition": "B",
+      "status": "completed",
+      "answer_words": 341
+    },
+    {
+      "id": "run-03",
+      "case": "case-28",
+      "condition": "A",
+      "status": "completed",
+      "answer_words": 278
+    },
+    {
+      "id": "run-04",
+      "case": "case-63",
+      "condition": "B",
+      "status": "completed",
+      "answer_words": 386
+    },
+    {
+      "id": "run-05",
+      "case": "case-35",
+      "condition": "A",
+      "status": "completed",
+      "answer_words": 373
+    },
+    {
+      "id": "run-06",
+      "case": "case-91",
+      "condition": "B",
+      "status": "completed",
+      "answer_words": 294
+    },
+    {
+      "id": "run-07",
+      "case": "case-56",
+      "condition": "A",
+      "status": "completed",
+      "answer_words": 338
+    },
+    {
+      "id": "run-08",
+      "case": "case-17",
+      "condition": "B",
+      "status": "invalid",
+      "reason": "Subagent runtime usage limit; no answer or trace produced"
+    },
+    {
+      "id": "run-09",
+      "case": "case-42",
+      "condition": "A",
+      "status": "invalid",
+      "reason": "Subagent runtime usage limit; no answer or trace produced"
+    },
+    {
+      "id": "run-10",
+      "case": "case-28",
+      "condition": "B",
+      "status": "completed",
+      "answer_words": 348
+    },
+    {
+      "id": "run-11",
+      "case": "case-63",
+      "condition": "A",
+      "status": "not_started",
+      "reason": "Further launches stopped after runtime usage-limit errors"
+    },
+    {
+      "id": "run-12",
+      "case": "case-35",
+      "condition": "B",
+      "status": "not_started",
+      "reason": "Further launches stopped after runtime usage-limit errors"
+    },
+    {
+      "id": "run-13",
+      "case": "case-91",
+      "condition": "A",
+      "status": "not_started",
+      "reason": "Further launches stopped after runtime usage-limit errors"
+    },
+    {
+      "id": "run-14",
+      "case": "case-56",
+      "condition": "B",
+      "status": "not_started",
+      "reason": "Further launches stopped after runtime usage-limit errors"
+    }
+  ],
+  "sha256": {
+    "evals/repository-review/README.md": "43a10fd24f0180e0c28948d3a4d32f134249f2867e89f9c626cfb50530948787",
+    "evals/repository-review/answer-key.json": "9630bc2dec57b8a5f1579c6d444b1c6483ec0ac2eaa6d8afdb7309d49993f4d5",
+    "evals/repository-review/cases/case-17/CONTRACT.md": "f33ecdc3b40910c1c0ab303ddeb0188b2cc48bb8573f1e7f2b39c2428401b1f7",
+    "evals/repository-review/cases/case-17/__init__.py": "cd9621c0f6fd7b0d6ef2924e9c893adb268a9fdb53e2a85d7d1a024ccc2642d6",
+    "evals/repository-review/cases/case-17/api.py": "1dce0fcf0694ee69640d1965da0fd5e0772797ca36fc0e64397e4ed58ac16652",
+    "evals/repository-review/cases/case-17/jobs.py": "19062138fb5e99e418e0ec14f6d94602b8644aa2da54acf44af51a239e63ced0",
+    "evals/repository-review/cases/case-17/schedule.json": "05d153e022f9b8dee30b0a1fb36dbb0c6f7a760ba2781e35128fa5db930c8aa6",
+    "evals/repository-review/cases/case-17/schema.sql": "32ee873b01917e102940f3cd2bfebbfbacb6d425e4beaa6c82f80e23d9ebdf41",
+    "evals/repository-review/cases/case-28/CONTRACT.md": "b2e04d460788e414d469cba73a90599c1f585e9bdbd728bb8fc42b5a0ed39f9d",
+    "evals/repository-review/cases/case-28/__init__.py": "c72f8246a75aaa7584c65bb274e717ecfc76e7a484b75b7b3485996661342be4",
+    "evals/repository-review/cases/case-28/api.py": "b03386ba598ce3df45c561dc12ff8d3b1af7d4cecebf855e0511c4d1acc9de8a",
+    "evals/repository-review/cases/case-28/repository.py": "fce5580dc9cfb9db7c1ecc49bfbfa9bf8757dad47c1e17c9f513693b269c4b39",
+    "evals/repository-review/cases/case-28/schema.sql": "9ecaa0e96e48c583186304e46ebbed972f7ecca08f7e834a8b65b02b0eadd6ef",
+    "evals/repository-review/cases/case-35/CONTRACT.md": "1117a8c12d0d00ff7aea74f61bec03449e935226d02dd7ce38e93b7af661a779",
+    "evals/repository-review/cases/case-35/__init__.py": "5d0bf0adc0eddd0b67dc1ee40f30ac9bd8f6c2afba48c7c570ee6711e647efae",
+    "evals/repository-review/cases/case-35/api.py": "afa90aa534eb95466773bcca833c10a6f8ce5d819d343014d2a5a15fa0b98713",
+    "evals/repository-review/cases/case-35/schema.sql": "340eb9a07994e803bec614d9b18287a5c0bc7521296c21b8c30edd5115f7eb07",
+    "evals/repository-review/cases/case-35/storage.py": "a55d83a12d797b8b2005e23003c473f72d8a5b767f26f458269f610822231051",
+    "evals/repository-review/cases/case-42/CONTRACT.md": "f33ecdc3b40910c1c0ab303ddeb0188b2cc48bb8573f1e7f2b39c2428401b1f7",
+    "evals/repository-review/cases/case-42/__init__.py": "cd9621c0f6fd7b0d6ef2924e9c893adb268a9fdb53e2a85d7d1a024ccc2642d6",
+    "evals/repository-review/cases/case-42/api.py": "1dce0fcf0694ee69640d1965da0fd5e0772797ca36fc0e64397e4ed58ac16652",
+    "evals/repository-review/cases/case-42/jobs.py": "19062138fb5e99e418e0ec14f6d94602b8644aa2da54acf44af51a239e63ced0",
+    "evals/repository-review/cases/case-42/schedule.json": "05d153e022f9b8dee30b0a1fb36dbb0c6f7a760ba2781e35128fa5db930c8aa6",
+    "evals/repository-review/cases/case-42/schema.sql": "67caa569852d8feaaf2f071ac6b0db0d3717fd03d01dd833beaa8e19667c5676",
+    "evals/repository-review/cases/case-56/CONTRACT.md": "72f0ef10f1c6dc0801db14bcc6d72c654d575ad271686914ab5967120484605e",
+    "evals/repository-review/cases/case-56/api.py": "333f0cf7806d98c7ba0adb6a08b8d01138b8e70c829cd054025d03c8bdd72a03",
+    "evals/repository-review/cases/case-63/CONTRACT.md": "b2e04d460788e414d469cba73a90599c1f585e9bdbd728bb8fc42b5a0ed39f9d",
+    "evals/repository-review/cases/case-63/__init__.py": "c72f8246a75aaa7584c65bb274e717ecfc76e7a484b75b7b3485996661342be4",
+    "evals/repository-review/cases/case-63/api.py": "b03386ba598ce3df45c561dc12ff8d3b1af7d4cecebf855e0511c4d1acc9de8a",
+    "evals/repository-review/cases/case-63/repository.py": "8f1b182a57df9ec25e1b4cffe8a38787dfbd979566b770129e73781f856c78c4",
+    "evals/repository-review/cases/case-63/schema.sql": "9ecaa0e96e48c583186304e46ebbed972f7ecca08f7e834a8b65b02b0eadd6ef",
+    "evals/repository-review/cases/case-91/CONTRACT.md": "1117a8c12d0d00ff7aea74f61bec03449e935226d02dd7ce38e93b7af661a779",
+    "evals/repository-review/cases/case-91/__init__.py": "5d0bf0adc0eddd0b67dc1ee40f30ac9bd8f6c2afba48c7c570ee6711e647efae",
+    "evals/repository-review/cases/case-91/api.py": "afa90aa534eb95466773bcca833c10a6f8ce5d819d343014d2a5a15fa0b98713",
+    "evals/repository-review/cases/case-91/schema.sql": "340eb9a07994e803bec614d9b18287a5c0bc7521296c21b8c30edd5115f7eb07",
+    "evals/repository-review/cases/case-91/storage.py": "084c71f9c970a9e59be09b36b1eb8ed42c1e7d67bcc15adc6c331f05a5560a35",
+    "skill-A/LICENSE": "7d54633139885984ba1b309ef3a1a2959f169e4f134e3729b4b445439a7feed3",
+    "skill-A/SKILL.md": "d5566e5e44bcb36a19c98ccc5fd931d698264f7ae87826b0340a3682c9873989",
+    "skill-A/agents/openai.yaml": "0827d6925ce94fdc4317edd107d510802eec1ac497fbed8d3a8ccd9f6e0d627d",
+    "skill-A/assets/design-document-template.md": "083ae4017e6d3758648dbadb58f0e2560ea2a9c1e2f72fb717825a9d128d48cc",
+    "skill-A/references/capacity-estimation.md": "8024200567bd1fe56924e79c0748c0ade0d38dfae55961858e165ff46f0f673f",
+    "skill-A/references/content-delivery.md": "48b461af6614f51bb57cfcb73683907d1da1af939dec6e6c56af5d3209ef50e2",
+    "skill-A/references/correctness-and-failures.md": "955ca85494b47ca61b34f1397769d4231d9da769c11e064202996eaec6eff859",
+    "skill-A/references/realtime-messaging.md": "3aba53d77604d18051ed22c43c6bb99c74e09ed714d978ca9527f121e0a3bc62",
+    "skill-A/references/transactional-inventory.md": "a9af3c9b0fb6f2478745013d7d6ac691372b664be2feb96969dbad5e2e10ff61",
+    "skill-A/references/workflow.md": "869a742820cd5481b8019d9541aa99d1cfe7b6947ccf31560bd161a37bc414ee",
+    "skill-B/LICENSE": "7d54633139885984ba1b309ef3a1a2959f169e4f134e3729b4b445439a7feed3",
+    "skill-B/SKILL.md": "9d4e0cfcc7e612187ad3c8fa99330e8686bf2c455bf2eabb20caa7829eb68012",
+    "skill-B/agents/openai.yaml": "0827d6925ce94fdc4317edd107d510802eec1ac497fbed8d3a8ccd9f6e0d627d",
+    "skill-B/assets/design-document-template.md": "083ae4017e6d3758648dbadb58f0e2560ea2a9c1e2f72fb717825a9d128d48cc",
+    "skill-B/assets/review-finding-template.md": "22292df4df1d50b3d2722a7646af72856574f3114b3e45594103d8a289010664",
+    "skill-B/references/capacity-estimation.md": "8024200567bd1fe56924e79c0748c0ade0d38dfae55961858e165ff46f0f673f",
+    "skill-B/references/content-delivery.md": "48b461af6614f51bb57cfcb73683907d1da1af939dec6e6c56af5d3209ef50e2",
+    "skill-B/references/correctness-and-failures.md": "955ca85494b47ca61b34f1397769d4231d9da769c11e064202996eaec6eff859",
+    "skill-B/references/realtime-messaging.md": "3aba53d77604d18051ed22c43c6bb99c74e09ed714d978ca9527f121e0a3bc62",
+    "skill-B/references/repository-review.md": "d6c928350d2ee54e6751a3b11e0706db5cb4dc646a127bae917fbece1104cf03",
+    "skill-B/references/security-and-trust-boundaries.md": "66b53c56227fffcb9a7e8139f9f5d13300cf414fa400e4237bc815db8d9dc407",
+    "skill-B/references/transactional-inventory.md": "a9af3c9b0fb6f2478745013d7d6ac691372b664be2feb96969dbad5e2e10ff61",
+    "skill-B/references/workflow.md": "869a742820cd5481b8019d9541aa99d1cfe7b6947ccf31560bd161a37bc414ee",
+    "evals/results/2026-10-22-repository-review/responses/run-01.md": "c6935f91cec0ea77b21ecd826f4fe2590eb0b7ba9b7b477f71836d9bf9ecbd41",
+    "evals/results/2026-10-22-repository-review/traces/run-01.txt": "bf340658eebfe26a6fc14585c9f029a1cda27bc60227189d12247dc997bc030d",
+    "evals/results/2026-10-22-repository-review/responses/run-02.md": "7690bc7cc6849d9a01681ccae039fc9af1edf38ab46f47eb39e6d24fb88ccf83",
+    "evals/results/2026-10-22-repository-review/traces/run-02.txt": "d8aaf11f3aefa71cf5b0386db55a83276b1465ff33d8dc8cfd4b43e99d71c806",
+    "evals/results/2026-10-22-repository-review/responses/run-03.md": "cf832ff33ec8efa14726e694ebcd60934ce73e4926a8c7267f4159396dbb279b",
+    "evals/results/2026-10-22-repository-review/traces/run-03.txt": "3e68627c2a21cb6b0ecc4fd27dc853747b41c55bbc38399d4c3bf62c7fd11ed8",
+    "evals/results/2026-10-22-repository-review/responses/run-04.md": "5e0f63e0bac4e1a8a71566a0ddb63eb54c4e712ff342d012e7ef7c48b141b4ad",
+    "evals/results/2026-10-22-repository-review/traces/run-04.txt": "6391f4c3f2f51c837b30534ef8a64a9f4caf1b14c8ca83cd92905933b18d4b24",
+    "evals/results/2026-10-22-repository-review/responses/run-05.md": "9114bb7cddcd990d76444a3127f58551ac79795b50b6dc1523d01c216f1d5f1c",
+    "evals/results/2026-10-22-repository-review/traces/run-05.txt": "41c68ac3de77e2e2b746dfc7e23367ba345f3656f7a45782a0cf415d22751af0",
+    "evals/results/2026-10-22-repository-review/responses/run-06.md": "a00fcafb6159bd4e85135bbc9bed118bef651fb99c61e45f5133873417d9c9f5",
+    "evals/results/2026-10-22-repository-review/traces/run-06.txt": "fa8cf8f1fecd3a7147c0a60acc651ce7bbde780a93249c6edf305dacafd2aacd",
+    "evals/results/2026-10-22-repository-review/responses/run-07.md": "180a499aaf05bf9e44ce075a08ad6a6bb863eb3b560f45accbcde2c0b311389a",
+    "evals/results/2026-10-22-repository-review/traces/run-07.txt": "ec843568d63fac64170c4b41ed26e541d56e69daa55414970c675f021d0674ff",
+    "evals/results/2026-10-22-repository-review/responses/run-10.md": "3155400f88624b8226bb726680b2d93078c483c6213488dc79d00c324eab3655",
+    "evals/results/2026-10-22-repository-review/traces/run-10.txt": "6e52c2b2a9c403206e99f7f8fa50c5c72ed93a4503eba84852b501b336111c63"
+  },
+  "comparison_status": "incomplete",
+  "grading": "creator-reviewed completed answers, not blinded; planned blinded review not run",
+  "completed_criteria_review": "All four properties met in each of eight completed responses in creator review; only case-28 has both conditions, both pass; no aggregate comparative inference",
+  "installation": {
+    "cli": "1.5.18",
+    "source": "local proposed skill",
+    "targets": [
+      "codex",
+      "claude-code",
+      "cursor"
+    ],
+    "matching_files": 13,
+    "relative_links": "passed",
+    "native_invocation": "not tested"
+  },
+  "counts": {
+    "planned": 14,
+    "completed": 8,
+    "invalid_usage_limit": 2,
+    "not_started": 4
+  }
+}

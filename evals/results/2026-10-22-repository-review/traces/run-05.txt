@@ -1,0 +1,29 @@
+Files read:
+- task.txt
+- skill/SKILL.md
+- skill/references/workflow.md
+- skill/references/correctness-and-failures.md
+- service/CONTRACT.md
+- service/api.py
+- service/storage.py
+- service/schema.sql
+- service/__init__.py
+
+Commands and results:
+- cat task.txt and skill/SKILL.md: read task and selected skill instructions.
+- rg --files service skill/references: enumerated service and available reference files.
+- cat selected workflow and correctness references: read review/evidence and durability guidance.
+- nl -ba on the five service files: obtained source and relative citation line numbers.
+- python isolated probe: created a temporary directory only within this workspace and a file-backed SQLite database using the supplied schema. Used isolation_level=None and synchronous=FULL. Spawned a local child importing service.api.submit, consumed one event, printed it with flush=True, and terminated using os._exit(0). Reopened the database in the parent. Separately closed a generator at its first yield, inspected connection.in_transaction, rolled back, then fully consumed another submission and reopened. Temporary database directory was automatically removed.
+  Results:
+  child event: accepted
+  rows after writer loss: []
+  close event: accepted
+  transaction remains open after stream.close: True
+  fully consumed events: ['accepted']
+  rows after full consumption and reopen: [('complete', 'payload')]
+- apply_patch: created answer.md and trace.txt; service and skill source files were not edited.
+
+No network, installs, subagents, other workspaces, repository docs, rubrics, tests, or other answers were accessed.
+
+Final checks: wc -w answer.md returned 373; ls confirmed both deliverables exist. ls -la service identified bytecode cache created by the probe; removed those generated .pyc files and their directory, restoring the service source tree. No source files were changed.

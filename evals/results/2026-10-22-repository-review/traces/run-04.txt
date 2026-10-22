@@ -1,0 +1,23 @@
+Read only within /tmp/dss-review-run-04:
+- task.txt
+- skill/SKILL.md
+- skill/references/repository-review.md
+- skill/references/correctness-and-failures.md
+- skill/references/security-and-trust-boundaries.md
+- service/CONTRACT.md
+- service/api.py
+- service/repository.py
+- service/schema.sql
+- service/__init__.py
+
+Commands/results:
+1. cat task.txt skill/SKILL.md: established task and review workflow.
+2. pwd; rg --files service; cat selected repository-review/correctness references: identified five service files and review guidance.
+3. nl -ba for the five service files: traced search to result_page and facets, compared SQL predicates and schema against contract.
+4. cat security reference; python -B inline probe: loaded supplied schema into sqlite3.connect(':memory:') and called actual service.api.search.
+   alpha: documents [(1, 'Team handbook')]; facets [('acquisition', 1), ('finance', 1), ('handbook', 1)].
+   beta: documents [(2, 'Unannounced acquisition'), (3, 'Confidential budget')]; same global facets.
+   empty tenant: documents []; same global facets.
+   Inserted beta document id=4, title='Other handbook', category='handbook' into in-memory DB; alpha's handbook facet increased to 2.
+   Probe exited successfully; no filesystem database or bytecode written, no service/skill edits.
+5. Wrote answer.md and trace.txt. No network, installations, subagents, other workspaces, tests, rubrics, or other answers accessed.
